@@ -9,7 +9,7 @@ package Objects
 	 */
 	public class Ohw extends Sprite
 	{
-		public var lasting:int = 11;
+		public var lasting:int = 30;
 		public var done:Boolean = false;
 		public function Ohw() 
 		{
@@ -17,7 +17,7 @@ package Objects
 			graphics.beginFill(0x0000ff, 1);
 			graphics.drawCircle(0, 0, lasting);
 			graphics.endFill();
-			//addEventListener(Event.ENTER_FRAME, last);
+			addEventListener(Event.ENTER_FRAME, last);
 		}
 		
 		public function last(e:Event):void 

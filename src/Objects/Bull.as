@@ -11,6 +11,7 @@ package Objects
 	{
 		private var bullseye:Sprite;
 		private var onitsway:Ohw = new Ohw;
+		public var onArray:Array = [];
 		public function Bull() 
 		{
 			bullseye = drawCrosshair();
@@ -23,13 +24,17 @@ package Objects
 		
 		private function Pow(e:MouseEvent):void 
 		{
-			addChild(onitsway);
-			onitsway.x = stage.mouseX;
-			onitsway.y = stage.mouseY;
+			var O:Number = onArray.length;
+			onArray.push(new Ohw);
+			addChild(onArray[onArray.length - 1]);
+			onArray[O].x = mouseX;
+			onArray[O].y = mouseY;
+
 		}
 		
 		private function vision(e:Event):void 
 		{
+		
 			bullseye.x = mouseX;
 			bullseye.y = mouseY;
 		}

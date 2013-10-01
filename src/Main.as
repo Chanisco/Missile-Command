@@ -10,7 +10,7 @@ package
 	import Objects.Enemy;
 	import Objects.Home;
 	import Objects.Tower;
-	import Objects.Rockets;
+	import Objects.Missile;
 	
 	/**
 	 * ...
@@ -27,9 +27,9 @@ package
 		public var turnHouseY:Number;
 		public var mouse:Mouse;
 		public var House:Home = new Home;
-		public var Rocket:Rockets = new Rockets;
-		public var rocketArray:Array = [];
-		
+		public var Rocket:Missile = new Missile;
+		public var missileArray:Array = [];
+		public var cooldown:int = 10;
 		public var cityArray:Array = [
 			new Tower(100, 500,0x00ff00),
 			new Tower(250, 550,0x00ff00),
@@ -50,7 +50,7 @@ package
 			main = this;
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
-			addEventListener(Event.ENTER_FRAME, Mainloop)
+			addEventListener(Event.ENTER_FRAME, Mainloop);
 			stage.addEventListener(MouseEvent.MOUSE_DOWN, aim);
 			House.x = 400;
 			House.y = 480;
@@ -69,26 +69,38 @@ package
 		
 		private function Mainloop(e:Event):void 
 		{
+		
 			House.HouseMovement();
+			var R:Number = missileArray.length;
+			var Xpos:int = new int(stage.mouseX);
+			var Ypos:int = new int(stage.mouseY);
+			trace("Xposition: ", Xpos);
+			trace("Yposition: ", Ypos);
+			for (var i:int = R-1; i >= 0; i--) 
+				{
+					if (missileArray[i].x == Xpos && missileArray[i].y == Ypos) {
+						trace("i'm there boss")
+					}
+				}
+			
 		}
 		
 		private function aim(e:MouseEvent):void 
 		{
-			var R:Number = rocketArray.length;
+			var R:Number = missileArray.length;
 			
 			Rocket.followTarget(new Point(mouseX, mouseY));
-			rocketArray.push(new Rockets);
+			missileArray.push(new Missile);
 			var Xpos:int = new int(mouseX);
 			var Ypos:int = new int(mouseY);
 			var Pos:Point = new Point(Xpos, Ypos);
-			rocketArray[R].x = House.x;
-			rocketArray[R].y = House.y;
-			rocketArray[R].followTarget(Pos);
-			addChild(rocketArray[rocketArray.length - 1]);
+			missileArray[R].x = House.x;
+			missileArray[R].y = House.y;
+			missileArray[R].followTarget(Pos);
+			addChild(missileArray[missileArray.length - 1]);
 			
-			rocketArray[R].movement;
-
-			Rocket.addEventListener(Event.ENTER_FRAME, fly);
+			missileArray[R].movement;
+			
 		}
 		
 		private function fly(e:Event):void 

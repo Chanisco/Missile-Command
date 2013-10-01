@@ -34,6 +34,16 @@ package Objects
 				graphics.endFill();
 				size++;
 			}
+			if (size >= 60) {
+				this.alpha -= 0.01;
+				if (this.alpha < 0.2) {
+					if (contains(this)) {
+						trace("hoi");
+						stage.removeChild(this);
+						stage.removeEventListener(Event.ENTER_FRAME, explosion);
+					}
+				}
+			}
 			
 		}
 		
