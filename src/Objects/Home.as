@@ -7,14 +7,10 @@ package Objects
 	 */
 	public class Home extends Sprite
 	{
-		
+		private var cannon:Cannon = new Cannon;
 		public function Home() 
 		{
-			graphics.lineStyle(1, 0x000000);
-			graphics.moveTo(0, -10);
-			graphics.lineTo(30, 0);
-			graphics.lineTo(0, 10);
-			graphics.lineTo(0, -10);
+			addChild(cannon)
 		}
 		
 		public function HouseMovement():void 

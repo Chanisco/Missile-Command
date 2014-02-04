@@ -13,9 +13,8 @@ package Objects
 		{
 			
 		}
-		 public function followTarget($target:Point):void{
-				if($target != null)
-			   {
+		 public function followTarget($target:Point):void {
+				if($target != null){
 				var xdiff:Number = ($target.x - this.x);
 				var ydiff:Number = ($target.y - this.y);
 				var radiants:Number = Math.atan2(ydiff, xdiff);
@@ -29,7 +28,7 @@ package Objects
 			   var movementSpeed:Point = new Point();
 			   movementSpeed.x = Math.cos(this.rotation / 180 *Math.PI)* $speed;
 			   movementSpeed.y = Math.sin(this.rotation / 180 * Math.PI)* $speed;
-			   
+			  
 			   this.x += movementSpeed.x
 			   this.y += movementSpeed.y
 			  }

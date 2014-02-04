@@ -10,38 +10,32 @@ package Objects
 	{
 		private var xp : Number;
 		private var yp : Number;
-		private var size : Number;
-		public var kaBoom:Sprite = new Sprite
+		public var size : Number;
+		public var explosion:Sprite = new Sprite
 		public function Boom() 
 		{
-			this.xp = xp;
-			this.yp = yp;
-			this.size = size;
-			yp = 200;
-			xp = 200;
+	
 			size = 20;
-			graphics.beginFill(0x00000f)
-			graphics.drawCircle(xp, yp, size)
-			stage.addEventListener(Event.ENTER_FRAME, explosion);
+			explosion.graphics.beginFill(0x00000f)
+			explosion.graphics.drawCircle(0, 0, 30)
+			addChild(explosion)
+			addEventListener(Event.ENTER_FRAME, Explosion);
 		}
 		
-		private function explosion(e:Event):void 
+		private function Explosion(e:Event):void 
 		{
-			if(size < 60){
-				graphics.clear();
-				graphics.beginFill(0x00000f)
-				graphics.drawCircle(xp, yp, size)
-				graphics.endFill();
+			if(size < 30){
+				explosion.graphics.clear();
+				explosion.graphics.beginFill(0x00000f)
+				explosion.graphics.drawCircle(0, 0, size)
+				explosion.graphics.endFill();
 				size++;
 			}
-			if (size >= 60) {
-				this.alpha -= 0.01;
-				if (this.alpha < 0.2) {
-					if (contains(this)) {
-						trace("hoi");
-						stage.removeChild(this);
-						stage.removeEventListener(Event.ENTER_FRAME, explosion);
-					}
+			if (size >= 30) {
+				explosion.alpha -= 0.01;
+				if (explosion.alpha < 0.2) {
+					removeChild(explosion);
+					removeEventListener(Event.ENTER_FRAME, Explosion);
 				}
 			}
 			
