@@ -14,15 +14,15 @@ package Objects
 			
 		}
 		 public function followTarget($target:Point):void {
-				if($target != null){
+			if($target != null){
 				var xdiff:Number = ($target.x - this.x);
 				var ydiff:Number = ($target.y - this.y);
 				var radiants:Number = Math.atan2(ydiff, xdiff);
 				var degrees:Number = radiants * 180 / Math.PI;
 				
 				this.rotation = degrees;
-			   }
-			  }
+			}
+		}
 			  
 			  public function movement($speed:Number):void {
 			   var movementSpeed:Point = new Point();
